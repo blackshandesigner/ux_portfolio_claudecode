@@ -165,7 +165,7 @@ export const projects: Project[] = [
     cardImageAlt:
       "Homepage screenshot from the Turn review text into actionable AI Insights project.",
     cardImagePosition: "center 50%",
-    heroImage: "/images/project-01-hero.png",
+    heroImage: "/images/project-01-ai-insights.png",
     context: {
       lead: "Making AI Insights relevant to every hotel",
       body: [
