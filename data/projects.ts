@@ -98,6 +98,8 @@ export type Project = {
   /** Optional homepage card image (public path). Falls back to a placeholder. */
   cardImage?: string;
   cardImageAlt?: string;
+  /** Optional object-position for the (cover-fit) card image, e.g. "center 40%". */
+  cardImagePosition?: string;
 
   /** Optional case-study hero image (public path). Falls back to a placeholder. */
   heroImage?: string;
@@ -159,9 +161,10 @@ export const projects: Project[] = [
     },
     heroAlt:
       "Placeholder for the AI Insights product hero image showing grouped guest-feedback insights and recommended actions.",
-    cardImage: "/images/project-01-homepage.png",
+    cardImage: "/images/project-01-ai-insights.png",
     cardImageAlt:
       "Homepage screenshot from the Turn review text into actionable AI Insights project.",
+    cardImagePosition: "center 50%",
     heroImage: "/images/project-01-hero.png",
     context: {
       lead: "Making AI Insights relevant to every hotel",

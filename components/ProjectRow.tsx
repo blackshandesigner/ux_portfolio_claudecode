@@ -24,6 +24,7 @@ export function ProjectRow({ project }: { project: Project }) {
               alt={project.cardImageAlt ?? `Product screenshot from ${project.title}`}
               fill
               sizes="(max-width: 720px) 100vw, 33vw"
+              style={project.cardImagePosition ? { objectPosition: project.cardImagePosition } : undefined}
             />
           </div>
         ) : (
