@@ -95,6 +95,13 @@ export type Project = {
   /** Alt text for the (placeholder) hero product image. */
   heroAlt: string;
 
+  /** Optional homepage card image (public path). Falls back to a placeholder. */
+  cardImage?: string;
+  cardImageAlt?: string;
+
+  /** Optional case-study hero image (public path). Falls back to a placeholder. */
+  heroImage?: string;
+
   /** Numbered case-study narrative. */
   context: CaseNarrative;
   problem: ProblemNarrative;
@@ -152,6 +159,10 @@ export const projects: Project[] = [
     },
     heroAlt:
       "Placeholder for the AI Insights product hero image showing grouped guest-feedback insights and recommended actions.",
+    cardImage: "/images/project-01-homepage.png",
+    cardImageAlt:
+      "Homepage screenshot from the Turn review text into actionable AI Insights project.",
+    heroImage: "/images/project-01-hero.png",
     context: {
       lead: "Making AI Insights relevant to every hotel",
       body: [
@@ -322,6 +333,9 @@ export const projects: Project[] = [
     },
     heroAlt:
       "Placeholder for the AI reply product hero image showing brand-voice controls and a generated response draft.",
+    cardImage: "/images/project-02-homepage.png",
+    cardImageAlt:
+      "Homepage screenshot from the AI reply enhancement project.",
     context: {
       lead: "Making AI review replies worth sending",
       body: [
@@ -544,6 +558,9 @@ export const projects: Project[] = [
     },
     heroAlt:
       "Placeholder for the design-system product hero image showing tokens, foundations, and a component library.",
+    cardImage: "/images/project-03-homepage.png",
+    cardImageAlt:
+      "Homepage screenshot from the scalable design system and token architecture project.",
     context: {
       lead: "Creating a shared design language",
       body: [

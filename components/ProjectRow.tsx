@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { Project } from "@/data/projects";
 
 export function ProjectRow({ project }: { project: Project }) {
@@ -16,10 +17,21 @@ export function ProjectRow({ project }: { project: Project }) {
             <div><span>Outcome</span><p>{project.outcome}</p></div>
           </div>
         </div>
-        <div className="project-image-placeholder" role="img" aria-label={`Placeholder for a product screenshot from ${project.title}`}>
-          <span>Product screenshot</span>
-          <small>Add image</small>
-        </div>
+        {project.cardImage ? (
+          <div className="project-image">
+            <Image
+              src={project.cardImage}
+              alt={project.cardImageAlt ?? `Product screenshot from ${project.title}`}
+              fill
+              sizes="(max-width: 720px) 100vw, 33vw"
+            />
+          </div>
+        ) : (
+          <div className="project-image-placeholder" role="img" aria-label={`Placeholder for a product screenshot from ${project.title}`}>
+            <span>Product screenshot</span>
+            <small>Add image</small>
+          </div>
+        )}
       </Link>
     </article>
   );

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowLeftIcon, ImageIcon } from "lucide-react";
 import type { Project } from "@/data/projects";
 
@@ -27,12 +28,24 @@ export function CaseStudyHero({ project }: { project: Project }) {
           <div className="case-title-panel">
             <h1 id="case-study-title">{project.title}</h1>
           </div>
-          <CaseImagePlaceholder
-            className="case-cover"
-            label="Hero product image"
-            hint="Recommended: 1600 × 1200 px"
-            alt={project.heroAlt}
-          />
+          {project.heroImage ? (
+            <div className="case-cover case-cover-image">
+              <Image
+                src={project.heroImage}
+                alt={project.heroAlt}
+                fill
+                priority
+                sizes="(max-width: 900px) 100vw, 55vw"
+              />
+            </div>
+          ) : (
+            <CaseImagePlaceholder
+              className="case-cover"
+              label="Hero product image"
+              hint="Recommended: 1600 × 1200 px"
+              alt={project.heroAlt}
+            />
+          )}
         </div>
       </section>
     </>
