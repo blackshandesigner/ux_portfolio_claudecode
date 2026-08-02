@@ -1,0 +1,40 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//Users/hui-shanchen/Documents/Codex/PD_Portfolio/v1/**)",
+      "WebFetch(domain:huishanchen.vercel.app)",
+      "Bash(cp package.json tsconfig.json next.config.ts eslint.config.mjs next-env.d.ts .gitignore /Users/hui-shanchen/ClaudeCode/HSC_Portfolio/)",
+      "Bash(mkdir -p /Users/hui-shanchen/ClaudeCode/HSC_Portfolio/app/work/[slug])",
+      "Bash(cp app/layout.tsx app/page.tsx app/globals.css app/sitemap.ts app/robots.ts /Users/hui-shanchen/ClaudeCode/HSC_Portfolio/app/)",
+      "Bash(cp app/work/[slug]/page.tsx /Users/hui-shanchen/ClaudeCode/HSC_Portfolio/app/work/[slug]/page.tsx)",
+      "Bash(mkdir -p /Users/hui-shanchen/ClaudeCode/HSC_Portfolio/components)",
+      "Bash(npm install *)",
+      "Bash(npx tsc *)",
+      "Bash(echo \"=== TSC EXIT $? ===\")",
+      "Bash(npm run *)",
+      "Bash(curl -s -o /dev/null -w \"home:%{http_code}\\\\n\" http://localhost:3000/)",
+      "Bash(curl -s -o /dev/null -w \"p1:%{http_code}\\\\n\" http://localhost:3000/work/turn-review-text-into-actionable-ai-insights)",
+      "Bash(curl -s -o /dev/null -w \"p2:%{http_code}\\\\n\" http://localhost:3000/work/ai-reply-enhancement-consistent-brand-voice-through-structured-prompting)",
+      "Bash(curl -s -o /dev/null -w \"p3:%{http_code}\\\\n\" http://localhost:3000/work/scalable-design-system-and-token-architecture)",
+      "Bash(curl -s -o /dev/null -w \"old-route:%{http_code}\\\\n\" http://localhost:3000/work/personal-finance-activation)",
+      "Bash(curl -s http://localhost:3100/work/turn-review-text-into-actionable-ai-insights)",
+      "Bash(curl -s http://localhost:3100/work/nope)",
+      "Bash(curl -s http://localhost:3100/)",
+      "Bash(xargs kill)",
+      "Bash(echo \"TSC_EXIT=$?\")",
+      "Bash(perl -0pi -e 's/<CaseStudyContentSection index=\"\\\\d+\" title=/<CaseStudyContentSection title=/g' \"app/work/[slug]/page.tsx\")",
+      "Bash(curl -s -o /dev/null -w \"localhost:3000 -> %{http_code}\\\\n\" http://localhost:3000/)",
+      "Bash(curl -s -o /dev/null -w \"case-study:%{http_code}\\\\n\" http://localhost:3000/work/ai-reply-enhancement-consistent-brand-voice-through-structured-prompting)",
+      "Bash(awk 'NR>=515 && NR<=700 && \\(/decisions: \\\\[/ || /flow: \\\\[/ || /solution:/ || /outcomes: \\\\[/ || /learning:/\\)' data/projects.ts)",
+      "Bash(awk -F: '$1>=515')",
+      "Bash(awk -F: '$1>600')",
+      "Bash(perl -0pi -e 's/\\\\n    standfirstDecks: true,//g' data/projects.ts)",
+      "Bash(perl -0pi -e 's/\\\\n\\\\n  \\\\/\\\\*\\\\* When true, each section.s first paragraph renders as a 20px semibold standfirst\\\\. \\\\*\\\\/\\\\n  standfirstDecks\\\\?: boolean;//' data/projects.ts)",
+      "Bash(echo \"=== scratchpad ===\" && ls -la /private/tmp/claude-501/-Users-hui-shanchen-ClaudeCode-HSC-Portfolio/313ce95c-0ef5-4470-b064-e6417459a6ce/scratchpad/ 2>/dev/null; echo \"=== recent images in tmp/cwd/Downloads ===\" && find /private/tmp/claude-501 /Users/hui-shanchen/ClaudeCode/HSC_Portfolio /Users/hui-shanchen/Downloads -type f \\\\\\( -iname \"*.png\" -o -iname \"*.jpg\" -o -iname \"*.jpeg\" \\\\\\) -mmin -30 2>/dev/null | head -20; echo \"\\(end\\)\")",
+      "Bash(curl -s -o /dev/null -w \"global-colors.png -> %{http_code}\\\\n\" \"http://localhost:3000/images/global-colors.png\")",
+      "Bash(curl -s -o /dev/null -w \"flag-component.png -> %{http_code}\\\\n\" \"http://localhost:3000/images/flag-component.png\")",
+      "Bash(sips -g pixelWidth -g pixelHeight flag-component.png)",
+      "Bash(curl -s -o /dev/null -w \"badge -> %{http_code}\\\\n\" http://localhost:3000/images/badge-component.png)"
+    ]
+  }
+}
