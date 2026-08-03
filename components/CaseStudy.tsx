@@ -36,6 +36,7 @@ export function CaseStudyHero({ project }: { project: Project }) {
                 fill
                 priority
                 sizes="(max-width: 900px) 100vw, 55vw"
+                style={project.heroImagePosition ? { objectPosition: project.heroImagePosition } : undefined}
               />
             </div>
           ) : (

@@ -103,6 +103,8 @@ export type Project = {
 
   /** Optional case-study hero image (public path). Falls back to a placeholder. */
   heroImage?: string;
+  /** Optional object-position for the (cover-fit) hero image, e.g. "center 65%". */
+  heroImagePosition?: string;
 
   /** Numbered case-study narrative. */
   context: CaseNarrative;
@@ -341,6 +343,7 @@ export const projects: Project[] = [
       "Homepage screenshot from the AI reply enhancement project.",
     cardImagePosition: "center 70%",
     heroImage: "/images/project_brand_voice_config/project_02_brand_voice_re.png",
+    heroImagePosition: "center 65%",
     context: {
       lead: "Making AI review replies worth sending",
       body: [
@@ -568,6 +571,7 @@ export const projects: Project[] = [
       "Homepage screenshot from the scalable design system and token architecture project.",
     cardImagePosition: "center 68%",
     heroImage: "/images/project_design_system/project_03_design_system_re.png",
+    heroImagePosition: "center 65%",
     context: {
       lead: "Creating a shared design language",
       body: [
