@@ -161,11 +161,11 @@ export const projects: Project[] = [
     },
     heroAlt:
       "Placeholder for the AI Insights product hero image showing grouped guest-feedback insights and recommended actions.",
-    cardImage: "/images/project-01-ai-insights.png",
+    cardImage: "/images/project_ai_insights/project-01-ai-insights.png",
     cardImageAlt:
       "Homepage screenshot from the Turn review text into actionable AI Insights project.",
     cardImagePosition: "center 50%",
-    heroImage: "/images/project-01-ai-insights.png",
+    heroImage: "/images/project_ai_insights/project-01-ai-insights.png",
     context: {
       lead: "Making AI Insights relevant to every hotel",
       body: [
@@ -336,9 +336,11 @@ export const projects: Project[] = [
     },
     heroAlt:
       "Placeholder for the AI reply product hero image showing brand-voice controls and a generated response draft.",
-    cardImage: "/images/project-02-homepage.png",
+    cardImage: "/images/project_brand_voice_config/project_02_brand_voice_re.png",
     cardImageAlt:
       "Homepage screenshot from the AI reply enhancement project.",
+    cardImagePosition: "center 70%",
+    heroImage: "/images/project_brand_voice_config/project_02_brand_voice_re.png",
     context: {
       lead: "Making AI review replies worth sending",
       body: [
@@ -561,9 +563,11 @@ export const projects: Project[] = [
     },
     heroAlt:
       "Placeholder for the design-system product hero image showing tokens, foundations, and a component library.",
-    cardImage: "/images/project-03-homepage.png",
+    cardImage: "/images/project_design_system/project_03_design_system_re.png",
     cardImageAlt:
       "Homepage screenshot from the scalable design system and token architecture project.",
+    cardImagePosition: "center 68%",
+    heroImage: "/images/project_design_system/project_03_design_system_re.png",
     context: {
       lead: "Creating a shared design language",
       body: [
@@ -603,13 +607,13 @@ export const projects: Project[] = [
           {
             label: "Global colours & tokens",
             hint: "Recommended: 1200 × 720 px",
-            src: "/images/global-colors.png",
+            src: "/images/project_design_system/global-colors.png",
             alt: "Design system global colours — blue, green, and yellow scales shown alongside the theme variable tokens.",
           },
           {
             label: "Badge component",
             hint: "Recommended: 1200 × 720 px",
-            src: "/images/badge-component.png",
+            src: "/images/project_design_system/badge-component.png",
             alt: "Badge component documentation showing its variants and states across light and dark themes.",
           },
         ],

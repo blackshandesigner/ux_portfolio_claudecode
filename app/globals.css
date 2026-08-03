@@ -179,10 +179,10 @@ section { scroll-margin-top: 86px; }
 .project-details div { padding-top: 14px; border-top: 1px solid var(--border); }
 .project-details span { display: block; margin-bottom: 5px; }
 .project-details p { margin: 0; color: var(--text-secondary); font-size: 12px; line-height: 1.5; }
-.project-image-placeholder { display: grid; place-content: center; min-height: 240px; border: 1px dashed color-mix(in srgb, var(--accent) 55%, var(--border)); border-radius: 12px; background: var(--accent-light); color: var(--text-secondary); text-align: center; }
+.project-image-placeholder { display: grid; place-content: center; height: 260px; align-self: center; border: 1px dashed color-mix(in srgb, var(--accent) 55%, var(--border)); border-radius: 12px; background: var(--accent-light); color: var(--text-secondary); text-align: center; }
 .project-image-placeholder span { font-size: .76rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
 .project-image-placeholder small { margin-top: 6px; font-size: .7rem; }
-.project-image { position: relative; min-height: 240px; overflow: hidden; border: 1px solid var(--border); border-radius: 12px; background: var(--accent-light); }
+.project-image { position: relative; height: 260px; align-self: center; overflow: hidden; border: 1px solid var(--border); border-radius: 12px; background: var(--accent-light); }
 .project-image img { object-fit: cover; object-position: top center; }
 .accent-sage { --accent: var(--sage); --accent-light: var(--sage-light); }
 
@@ -447,7 +447,7 @@ section { scroll-margin-top: 86px; }
   .menu-button { display: inline-flex; }
   .hero-title { font-size: clamp(4rem, 12vw, 7rem); line-height: 1.08; }
   .project-card-link { grid-template-columns: 56px minmax(0, 1fr); }
-  .project-image-placeholder, .project-image { grid-column: 2; min-height: 0; aspect-ratio: 16 / 9; }
+  .project-image-placeholder, .project-image { grid-column: 2; height: auto; min-height: 0; aspect-ratio: 16 / 9; }
   .about-grid h2 { max-width: 10ch; }
   .education-row .experience-role h3 { white-space: normal; }
   .experience-row { grid-template-columns: .8fr 1.3fr 1.6fr; }
@@ -480,7 +480,7 @@ section { scroll-margin-top: 86px; }
   .project-primary h3 { white-space: normal; }
   .project-row:first-child .project-primary h3 { white-space: normal; text-wrap: balance; }
   .project-details { grid-template-columns: 1fr; gap: 14px; margin-top: 26px; }
-  .project-image-placeholder, .project-image { aspect-ratio: 4 / 3; }
+  .project-image-placeholder, .project-image { height: auto; aspect-ratio: 4 / 3; }
   .experience-row { grid-template-columns: 1fr; gap: 28px; }
   .experience-date { display: grid; grid-template-columns: 1fr 1fr; }
   .experience-date small { grid-column: 1 / -1; margin-top: 8px; }
