@@ -41,7 +41,13 @@
       "Bash(sips -g pixelWidth -g pixelHeight /Users/hui-shanchen/ClaudeCode/HSC_Portfolio/public/images/project_brand_voice_config/project_02_brand_voice_settings_concept.png)",
       "Bash(sips -g pixelWidth -g pixelHeight /Users/hui-shanchen/ClaudeCode/HSC_Portfolio/public/images/project_brand_voice_config/project_02_prompt_structure.png)",
       "Bash(ls -la /Users/hui-shanchen/ClaudeCode/HSC_Portfolio/public/images/project_brand_voice_config/project_02_ai_reply_ismodify_log.png)",
-      "Bash(sips -g pixelWidth -g pixelHeight /Users/hui-shanchen/ClaudeCode/HSC_Portfolio/public/images/project_brand_voice_config/project_02_ai_reply_ismodify_log.png)"
+      "Bash(sips -g pixelWidth -g pixelHeight /Users/hui-shanchen/ClaudeCode/HSC_Portfolio/public/images/project_brand_voice_config/project_02_ai_reply_ismodify_log.png)",
+      "Bash(grep -n \"function renderInline\\\\|renderInline\" /Users/hui-shanchen/ClaudeCode/HSC_Portfolio/app/work/\\\\[slug\\\\]/page.tsx | head; echo \"---\"; sed -n '/function renderInline/,/^}/p' /Users/hui-shanchen/ClaudeCode/HSC_Portfolio/app/work/\\\\[slug\\\\]/page.tsx)",
+      "Bash(sips -g pixelWidth -g pixelHeight /Users/hui-shanchen/ClaudeCode/HSC_Portfolio/public/images/project_ai_insights/project_01_text_analytics.png)",
+      "Bash(sips -g pixelWidth -g pixelHeight /Users/hui-shanchen/ClaudeCode/HSC_Portfolio/public/images/project_ai_insights/project_01_design_sprint.png)",
+      "Bash(sips -g pixelWidth -g pixelHeight /Users/hui-shanchen/ClaudeCode/HSC_Portfolio/public/images/project_ai_insights/project_01_user_research.png)",
+      "Bash(sips -g pixelWidth -g pixelHeight /Users/hui-shanchen/ClaudeCode/HSC_Portfolio/public/images/project_ai_insights/project_01_ai_insights_actionitem.png)",
+      "Bash(sips -g pixelWidth -g pixelHeight /Users/hui-shanchen/ClaudeCode/HSC_Portfolio/public/images/project_ai_insights/project_01_ai_insights_feedbackloop.png)"
     ]
   }
 }

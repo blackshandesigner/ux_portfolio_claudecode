@@ -31,10 +31,14 @@ export type CaseNarrative = {
   pyramid?: TokenPyramid;
   /** Optional single full-width image rendered directly after `body`. */
   bodyImage?: InlineImage;
+  /** 0-based body index the `bodyImage` should follow (default: after all body). */
+  bodyImageAfter?: number;
   /** Optional emphasised quote/callout group rendered after `body`. */
   quoteGroup?: CaseQuoteGroup;
   /** Optional numbered cards (decision-grid style) rendered after `body`. */
   cards?: CaseDecision[];
+  /** Optional labelled bullet lists (each with an intro line) rendered after `body`. */
+  lists?: { intro?: string; items: string[] }[];
   /** Optional image row rendered at the very bottom, after `bodyAfter`. */
   imageRow?: ImageRowItem[];
   bodyAfter?: string[];
@@ -49,8 +53,13 @@ export type CaseQuoteGroup = { intro?: string; quotes: string[] };
 export type ListNarrative = {
   lead: string;
   body?: string[];
+  /** Optional single image rendered after `body` (or after `bodyImageAfter`). */
+  bodyImage?: InlineImage;
+  bodyImageAfter?: number;
   listIntro?: string;
   list?: string[];
+  /** Optional labelled bullet lists (each with an intro line) rendered after `body`. */
+  lists?: { intro?: string; items: string[] }[];
   bodyAfter?: string[];
   /** Optional single image rendered at the very bottom, after `bodyAfter`. */
   bottomImage?: InlineImage;
@@ -62,6 +71,9 @@ export type ProblemNarrative = {
   /** Optional single full-width image rendered directly after `body`. */
   bodyImage?: InlineImage;
   quoteGroup?: CaseQuoteGroup;
+  /** Optional bulleted list (with an optional intro line) after `body`. */
+  listIntro?: string;
+  list?: string[];
   bodyAfter?: string[];
   /** Optional image row rendered at the very bottom, after `bodyAfter`. */
   imageRow?: ImageRowItem[];
@@ -191,34 +203,37 @@ export const projects: Project[] = [
     cardImagePosition: "center 50%",
     heroImage: "/images/project_ai_insights/project-01-ai-insights_re.png",
     context: {
-      lead: "Making AI Insights relevant to every hotel",
+      lead: "Help hotels understand what guests are saying and what to do next",
       body: [
-        "Our AI could summarise thousands of guest reviews, but the results were too generic to answer the questions that mattered most.",
-        "AI Insights was created to help hospitality teams understand large volumes of guest feedback. Instead of reading every review manually, customers could see recurring positive and negative themes, AI-generated summaries, and recommended actions in one place.",
-        "The original experience organised feedback into predefined topics such as breakfast, cleanliness, facilities, and staff service. This gave customers a quick overview of their performance and created a consistent structure across the product. However, hotels are rarely organised in exactly the same way. They have different departments, facilities, customer promises, and operational priorities. A category such as “Staff friendliness” might be useful at a high level, but it could not tell a manager whether the feedback referred to reception, housekeeping, restaurant staff, or another team.",
-        "Customers were also trying to answer questions that no universal taxonomy could anticipate. They wanted to know whether guests noticed a new investment, whether complaints increased after changing suppliers, or whether a specific spa service was performing well. As the questions became more specific, the existing AI Insights experience became less useful.",
+        "Hospitality teams had plenty of guest feedback, but not enough clarity.",
+        "We collect large volumes of reviews across booking platforms, surveys, and other feedback channels for the hotels. While this data contains valuable signals, the existing text-analysis experience made those signals difficult to interpret.",
+        "Users could see individual topics, sentiment breakdowns, and mention counts, but understanding the bigger picture still required manual effort. Hotel teams had to move through complex tables, compare multiple categories, and interpret the data themselves before deciding what to improve.",
+        "The challenge was not simply to analyse more reviews. It was to help users understand ==what guests were saying, why it mattered, and what they should do next.==",
       ],
     },
     problem: {
-      lead: "Starting with the decisions customers needed to make",
+      lead: "The existing experience made it difficult to see what required attention.",
       body: [
-        "Before designing a solution, I spoke with customers about how they currently worked with guest feedback.",
-        "Some checked reviews every day, while others produced reports once or twice a month. Despite these differences, many of them followed a similar process: read reviews, copy information into Excel, classify comments into categories and subcategories, and then prepare a summary for management.",
-        "One quality manager described manually categorising thousands of comments every month. Because the process took so much time, the team could not analyse feedback as frequently as they wanted and had less time for strategic work such as identifying root causes.",
-        "Customers did not only want to know what guests were saying. They wanted to understand whether something had changed and whether they needed to act.",
+        "The existing text analytics interface presented detailed topic and sentiment data in a large table. Although the information was available, users struggled to build a clear overview of performance.",
       ],
-      quoteGroup: {
-        intro: "A manager might ask:",
-        quotes: [
-          "“Did guests notice the new coffee equipment?”",
-          "“Are complaints increasing since we changed breakfast suppliers?”",
-          "“Is our sustainability programme genuinely valued?”",
-          "“Which operational issue should we prioritise first?”",
-        ],
+      bodyImage: {
+        src: "/images/project_ai_insights/project_01_text_analytics.png",
+        alt: "The existing text-analytics interface, showing topic and sentiment data in a large, dense table.",
+        width: 1266,
+        height: 965,
+        maxHeight: 400,
       },
-      bodyAfter: [
-        "This changed how I framed the opportunity. A custom category was not simply another way to organise feedback. It could become a way for customers to validate business decisions using real guest experiences.",
+      listIntro: "Three central problems emerged:",
+      list: [
+        "**There was no clear summary of customer feedback.** Users could inspect individual topics, but they could not quickly understand the most important positive and negative themes.",
+        "**Analysis was time-consuming and complex.** Hotel managers had to review multiple categories and data points before they could understand how different areas were performing.",
+        "**The data did not provide a clear path to action.** The interface explained what guests mentioned, but it did not help users determine which problems to address or how to improve them.",
       ],
+      bodyAfter: [
+        "The result was an experience that provided data without sufficiently supporting decision-making.",
+      ],
+      question:
+        "Design challenge: How might we transform large volumes of guest feedback into insights that hotel teams can understand, trust, and act on quickly?",
     },
     research: [
       "Customer interviews with hotel managers",
@@ -227,12 +242,37 @@ export const projects: Project[] = [
       "Google Analytics and product-usage review",
     ],
     researchNarrative: {
-      lead: "Giving customers control without making them configure the AI",
+      lead: "Defining what a useful AI experience should achieve",
       body: [
-        "The first concept allowed customers to define their own category using a name and description.",
-        "A name such as “Coffee experience” could still be ambiguous. It might refer to coffee quality, breakfast service, in-room equipment, or the availability of coffee throughout the hotel. The description allowed customers to explain what they were interested in without manually entering every possible keyword or variation.",
-        "The AI could then match semantically related feedback, including different phrases that described the same experience. This was particularly important because customers often used their own terminology. One participant wanted the system to recognise multiple textual variations of the same spa service, while others needed categories that reflected departments and sub-services specific to their organisation. However, flexibility introduced a new problem. Customers were unsure how the AI would interpret what they entered.",
-        "They wanted to know whether “Cleanliness” would include “Dirty room,” whether spelling mistakes would matter, and whether the same category would work across different languages. They were also worried about spending time creating a category that returned no results. To reduce this uncertainty, the experience needed more than an empty input field. Examples, clearer descriptions of semantic matching, and an estimated number of matching reviews could help customers understand what the AI was likely to find before they saved the category.",
+        "Together with PM, we ran a design sprint to align the team around the purpose of the new feature, the major risks, and the questions we needed to answer.",
+        "Our primary goal was straightforward:",
+        "**Enable customers to generate useful insights from their collected feedback with as little effort as possible.**",
+      ],
+      bodyImage: {
+        src: "/images/project_ai_insights/project_01_design_sprint.png",
+        alt: "Design sprint output aligning the team on the feature's purpose, risks, and open questions.",
+        width: 2299,
+        height: 363,
+      },
+      bodyImageAfter: 0,
+      lists: [
+        {
+          intro: "We also defined two target success indicators:",
+          items: [
+            "90% of interviewed users should feel that AI Insights helps them take action and improve their business.",
+            "80% of customers should use AI Insights at least once a week to track progress and support decisions.",
+          ],
+        },
+        {
+          intro: "The workshop also surfaced two important risks:",
+          items: [
+            "Would users trust AI-generated text analysis?",
+            "Would the recommended improvements be realistic and actionable?",
+          ],
+        },
+      ],
+      bodyAfter: [
+        "These concerns shaped the experience from the beginning. The feature could not behave like a black box. Users needed to understand what the AI had found, where its conclusions came from, and whether its recommendations reflected real guest feedback.",
       ],
     },
     insights: [
@@ -279,11 +319,31 @@ export const projects: Project[] = [
       },
     ],
     decisionsNarrative: {
-      lead: "Creating a useful overview at a glance",
+      lead: "Research showed that prioritization was the real problem.",
       body: [
-        "Once the analysis was complete, each category needed to communicate its most important information without requiring customers to open it.",
-        "I designed the category cards to show the overall sentiment, the balance of positive and negative mentions, and the most frequently mentioned strength or issue. This allowed a manager to quickly understand whether the topic was performing well and whether something required attention. The sentiment badge used an intentionally simple rule. When positive mentions were at least twice the number of negative mentions, the category was positive. The inverse produced a negative result. Everything in between was presented as mixed. When fewer than five mentions were available, the system avoided presenting an overly confident conclusion.",
-        "The goal was not to expose the technical model. It was to provide a result that customers could understand and explain to someone else.",
+        "I created a research plan covering the study background, objectives, participants, methods, and interview questions. The research explored users’ expectations of AI-generated insights, the factors that would increase trust, and how the experience could fit into daily hotel-management workflows.",
+        "I interviewed 15 participants across different hospitality roles, including room managers, hotel managers, guest-experience leads, front-desk managers, hotel owners, and other operational stakeholders.",
+      ],
+      bodyImage: {
+        src: "/images/project_ai_insights/project_01_user_research.png",
+        alt: "User research overview from interviews with 15 hospitality professionals.",
+        width: 2322,
+        height: 981,
+        maxHeight: 400,
+      },
+      lists: [
+        {
+          intro: "Four themes appeared consistently:",
+          items: [
+            "**Negative feedback was the starting point for improvement.** Participants prioritized negative reviews because these reviews helped them identify problems affecting room quality and the guest experience.",
+            "**Important issues were difficult to identify quickly.** Users could not easily distinguish isolated complaints from recurring problems that required immediate attention.",
+            "**Staff shortages made analysis even harder.** Limited staffing already affected service quality. Teams did not have time to manually interpret large volumes of feedback alongside their operational responsibilities.",
+            "**Prioritizing complex problems was exhausting.** Participants found it difficult to decide what to address first, especially when problems involved multiple areas of the hotel.",
+          ],
+        },
+      ],
+      bodyAfter: [
+        "The research changed the framing of the feature. Users did not need another analytics dashboard filled with more information. They needed a tool that reduced the effort required to identify priorities.",
       ],
     },
     flow: [
@@ -292,19 +352,59 @@ export const projects: Project[] = [
       { step: "03", label: "Recommend actions", detail: "Surface prioritized, evidence-backed next steps" },
     ],
     developmentNarrative: {
-      lead: "Connecting every insight to its evidence",
+      lead: "Turning analysis into recommended actions",
       body: [
-        "AI-generated summaries could help customers understand feedback quickly, but they also needed a way to verify what the system was telling them. Selecting a custom category updated the rest of the AI Insights experience with relevant positive and negative themes, summaries, supporting mentions, and recommended actions. I also designed the experience so that customers could move from a summary back to the original guest reviews. This created a clear relationship between the AI’s interpretation and the evidence behind it.",
-        "A manager could begin with a broad conclusion, investigate the recurring themes that produced it, and then read the individual comments when more context was required. This was especially important for trust. Customers noticed when the total number of reviews differed from the number analysed by the AI. Without an explanation, even a small discrepancy could make the entire result feel unreliable. The interface therefore needed to communicate which reviews were included, the selected date range, when the analysis was updated, and why some reviews might not contain a relevant mention.",
+        "Identifying a problem is only the beginning. Hotel teams still need to decide how to respond. Below the sentiment overview, I introduced a Recommended actions section:",
+      ],
+      bodyImage: {
+        src: "/images/project_ai_insights/project_01_ai_insights_actionitem.png",
+        alt: "The Recommended actions section, grouping AI-suggested improvements by topic with priority levels.",
+        width: 994,
+        height: 782,
+        maxHeight: 400,
+      },
+      lists: [
+        {
+          intro:
+            "The AI translates recurring feedback into potential improvements and groups the actions by topic. Recommendations include priority levels such as:",
+          items: ["High", "Medium", "Low"],
+        },
+      ],
+      bodyAfter: [
+        "This structure helps users move from **“Guests frequently complain about this”** to **“This is the issue we should address first, and this is a possible next step.”**",
+        "The recommendations were designed as guidance rather than unquestionable instructions. Users could evaluate them against their operational knowledge, available resources, and the original reviews. This distinction was important because the research and design sprint had already identified trust and practicality as major risks.",
       ],
     },
     solution:
       "The final concept turns raw review text into grouped, prioritized insights—each tied to a recommended action and the quotes that support it—so managers can move from reading to acting with confidence.",
     solutionNarrative: {
-      lead: "Moving beyond mention counts",
+      lead: "Creating an overview that could be understood in seconds",
       body: [
-        "During the research, customers repeatedly described guest feedback in relation to time. They wanted to compare the current month with the previous month, the same period in the previous year, or another property in the same hotel group. One customer wanted to check AI Insights daily and compare the results with the previous day, the current month, and the same period one year earlier. This showed that a custom category would become significantly more valuable when it could be monitored over time.",
-        "A count of 40 negative mentions says very little on its own. The same number becomes meaningful when customers know that it increased from 15 the previous month or that similar hotels receive far fewer complaints. Trend analysis and benchmarking therefore became an important part of the longer-term direction. Instead of behaving like a saved search, each category could become a lightweight operational KPI that helped customers measure the effect of changes.",
+        "The first major design decision was to divide the experience into two clear perspectives:",
+      ],
+      lists: [
+        {
+          items: [
+            "**What is going well** This section summaries what guests consistently valued, such as friendly staff, clean rooms, a good location, breakfast, or the view.",
+            "**What needs improvement** This section highlights recurring negative themes such as slow check-in, noise, weak Wi-Fi, cleanliness problems, or poor lighting.",
+          ],
+        },
+      ],
+      bodyAfter: [
+        "Each side combines an AI-generated summary with ranked topics, mention counts, and visual bars. This gives users both a high-level interpretation and enough structured data to understand the relative importance of each topic.",
+      ],
+      imageRow: [
+        {
+          src: "/images/project_ai_insights/project_01_ai_insights_default.png",
+          alt: "The AI Insights overview, showing what is going well and what needs improvement side by side.",
+        },
+        {
+          src: "/images/project_ai_insights/project_01_ai_insights_drawer.png",
+          alt: "The AI Insights detail drawer, expanding a topic into supporting mentions and evidence.",
+        },
+      ],
+      closing: [
+        "Instead of requiring users to assemble a story from a table, the interface presents the story first and lets them explore the details when necessary. The design was also adapted for mobile, allowing managers to check the latest insights when they were away from a desktop or moving around the property.",
       ],
     },
     outcomes: [
@@ -313,31 +413,70 @@ export const projects: Project[] = [
       "Shaped a flexible AI Insights experience ready for MVP delivery",
     ],
     outcomesNarrative: {
-      lead: "What testing changed",
+      lead: "Building feedback directly into the product",
       body: [
-        "The research validated that customers had clear reasons to define their own categories. They wanted to measure investments, monitor operational changes, identify risks, and prepare stronger evidence for management decisions.",
-        "At the same time, usability testing revealed that the original creation experience was not ready. The failure to find a newly created category would have damaged trust before customers had the opportunity to experience the feature’s value. Finding this problem early changed the focus of the design. Improving the category form was no longer enough.",
-        "The work resulted in a validated direction for Custom Categories, a clearer understanding of their role in customer workflows, and a prioritised set of improvements around input guidance, processing feedback, data transparency, trends, and benchmarking.",
-        "The supplied materials do not yet include post-launch adoption or commercial metrics, so I would present this outcome as validated product direction and reduced development risk, rather than claiming measured business impact.",
+        "The quality of AI-generated content would improve over time, the launch experience needed a built-in feedback loop. Users can rate both the AI summary and the recommended actions with positive or negative feedback. When something is not helpful, the interface asks why.",
+      ],
+      bodyImage: {
+        src: "/images/project_ai_insights/project_01_ai_insights_feedbackloop.png",
+        alt: "The in-product feedback loop, letting users rate AI summaries and recommended actions and say why.",
+        width: 788,
+        height: 499,
+        maxHeight: 400,
+      },
+      lists: [
+        {
+          intro: "For summaries, users can select reasons such as:",
+          items: [
+            "Too generic",
+            "Too short",
+            "Lacks useful detail",
+            "Not enough explanation behind the insight",
+            "Does not match the reviews",
+          ],
+        },
+        {
+          intro: "For recommended actions, users can report that the suggestion is:",
+          items: [
+            "Not tailored",
+            "Impractical",
+            "Missing concrete steps",
+            "Unrelated to guest feedback",
+            "Based on the wrong priority",
+          ],
+        },
+      ],
+      bodyAfter: [
+        "An optional text field allows users to provide additional context.",
+        "This feedback mechanism makes the AI experience measurable after launch. It helps the team distinguish between different types of failure rather than collecting an ambiguous thumbs-down signal. It also creates a foundation for improving prompts, summaries, prioritization, and recommendations over time.",
       ],
     },
     learning:
       "AI is most useful when it does the prioritization work and still lets people see the evidence behind a recommendation. Trust comes from transparency, not just accuracy.",
     learningNarrative: {
-      lead: "The future",
+      lead: "What I have learned",
       body: [
-        "Custom Categories could move AI Insights from a generic reporting feature towards a configurable operational intelligence tool. Customers would be able to define the business questions that matter to them, see how guest sentiment changes over time, compare performance across properties, and connect emerging issues to recommended actions.",
-        "The project also changed how I think about designing AI experiences. Users do not necessarily need to understand how a model works, but they do need a reliable mental model of what it will do. Guidance, visible processing, understandable logic, and access to supporting evidence are not secondary details. They are what make an AI-generated result usable and trustworthy. Most importantly, the strongest use cases were not about generating more summaries. They were about supporting decisions.",
-        "The value of AI Insights was not simply telling customers what guests had said. It was helping them understand what had changed, why it mattered, and what they should do next.",
+        "AI needs to explain itself.",
+      ],
+      lists: [
+        {
+          items: [
+            "**A polished summary is not enough.** Users need access to the source material before they can confidently use AI-generated information in business decisions.",
+            "**Prioritization is often more valuable than additional analysis.** The research showed that users were already surrounded by data. The greater opportunity was to help them decide what deserved attention first.",
+            "**Feedback must be specific to be useful.** A simple positive or negative rating would not explain how to improve the experience. Structured feedback reasons provide much stronger signals for product and AI iteration.",
+            "**Actionability depends on context.** A technically reasonable recommendation may still be impractical for a hotel with limited staff, budget, or operational capacity. AI recommendations should support professional judgement rather than replace it.",
+          ],
+        },
       ],
     },
     sectionPlan: [
       { title: "Context", parts: ["context"] },
       { title: "Problem", parts: ["problem"] },
-      { title: "Concept", parts: ["research", "insights"] },
-      { title: "Design decisions", parts: ["decisions", "development"] },
-      { title: "Future direction", parts: ["solution"] },
-      { title: "Outcomes", parts: ["outcomes", "learning"] },
+      { title: "Concept", parts: ["research"] },
+      { title: "Research", parts: ["decisions"] },
+      { title: "Design decisions", parts: ["solution", "development"] },
+      { title: "Feedback", parts: ["outcomes"] },
+      { title: "Learnings", parts: ["learning"] },
     ],
   },
   {

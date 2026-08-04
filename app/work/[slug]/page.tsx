@@ -293,9 +293,20 @@ export default async function CaseStudyPage({
 
 /** Render a paragraph, converting **…** spans into semibold <strong>. */
 function renderInline(text: string) {
-  return text.split(/\*\*(.+?)\*\*/g).map((part, i) =>
-    i % 2 === 1 ? <strong key={i}>{part}</strong> : part
-  );
+  // Supports **bold** and ==highlight== inline markers.
+  return text.split(/(\*\*.+?\*\*|==.+?==)/g).map((part, i) => {
+    if (part.startsWith("**") && part.endsWith("**")) {
+      return <strong key={i}>{part.slice(2, -2)}</strong>;
+    }
+    if (part.startsWith("==") && part.endsWith("==")) {
+      return (
+        <mark key={i} className="case-mark">
+          {part.slice(2, -2)}
+        </mark>
+      );
+    }
+    return part;
+  });
 }
 
 function Paragraphs({ items }: { items?: string[] }) {
@@ -320,7 +331,9 @@ type AnyNarrative = {
   quoteGroup?: { intro?: string; quotes: string[] };
   listIntro?: string;
   list?: string[];
+  lists?: { intro?: string; items: string[] }[];
   bodyImage?: { src: string; alt: string; width: number; height: number; maxHeight?: number };
+  bodyImageAfter?: number;
   cards?: { title: string; detail: string }[];
   imageRow?: { src: string; alt: string }[];
   bodyAfter?: string[];
@@ -553,8 +566,18 @@ function NarrativePart({
       <p className={as === "lead" ? "case-lead" : "case-subhead"}>
         {narrative.lead}
       </p>
-      <Paragraphs items={narrative.body} />
-      {narrative.bodyImage ? <InlineImage image={narrative.bodyImage} /> : null}
+      {narrative.bodyImage && narrative.bodyImageAfter != null ? (
+        <>
+          <Paragraphs items={narrative.body?.slice(0, narrative.bodyImageAfter + 1)} />
+          <InlineImage image={narrative.bodyImage} />
+          <Paragraphs items={narrative.body?.slice(narrative.bodyImageAfter + 1)} />
+        </>
+      ) : (
+        <>
+          <Paragraphs items={narrative.body} />
+          {narrative.bodyImage ? <InlineImage image={narrative.bodyImage} /> : null}
+        </>
+      )}
       {narrative.cards ? (
         <div className="decision-grid">
           {narrative.cards.map((card, i) => (
@@ -590,6 +613,14 @@ function NarrativePart({
           ))}
         </ul>
       ) : null}
+      {narrative.lists?.flatMap((group, gi) => [
+        group.intro ? <p key={`li-${gi}`}>{group.intro}</p> : null,
+        <ul className="case-bullet-list" key={`ul-${gi}`}>
+          {group.items.map((item) => (
+            <li key={item}>{renderInline(item)}</li>
+          ))}
+        </ul>,
+      ])}
       <Paragraphs items={narrative.bodyAfter} />
       {narrative.imageRow ? <ImageRow items={narrative.imageRow} /> : null}
       {narrative.bottomImage ? <InlineImage image={narrative.bottomImage} /> : null}

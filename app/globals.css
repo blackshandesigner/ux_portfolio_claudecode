@@ -363,13 +363,14 @@ section { scroll-margin-top: 86px; }
 .case-section-body > p { max-width: none; margin: 0 0 26px; color: var(--text-secondary); font-size: 16px; font-weight: 400; line-height: 1.75; }
 .case-section-body > p:last-child { margin-bottom: 0; }
 .case-section-body p strong { font-weight: 600; color: var(--text); }
+.case-mark { background: var(--sage-light); color: var(--text); font-weight: 600; padding: .04em .22em; border-radius: 4px; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
 /* Standfirst: the opening paragraph of the first section only */
 .case-narrative > .reveal:first-child .case-section-body > .case-lead + p { font-size: 20px; font-weight: 600; color: var(--text); line-height: 1.55; }
 /* Bulleted list within a narrative section */
 .case-bullet-list { margin: 0 0 26px; padding: 0; list-style: none; }
 .case-bullet-list li { position: relative; margin: 0 0 12px; padding-left: 24px; color: var(--text-secondary); font-size: 16px; font-weight: 400; line-height: 1.75; }
 .case-bullet-list li::before { content: ""; position: absolute; left: 4px; top: 11px; width: 6px; height: 6px; background: var(--sage); border-radius: 50%; }
-.case-bullet-list li strong { font-weight: 600; color: var(--text); }
+.case-bullet-list li strong { display: block; margin-bottom: 4px; font-weight: 600; color: var(--text); }
 .case-bullet-list li:last-child { margin-bottom: 0; }
 .case-section-body > .case-bullet-list:last-child { margin-bottom: 0; }
 /* Token / code example */
@@ -398,7 +399,7 @@ section { scroll-margin-top: 86px; }
 .case-section-body .case-lead:not(:last-child) { margin-bottom: clamp(20px, 2vw, 28px); }
 /* Secondary heading for a merged sub-section */
 .case-section-body > .case-subhead { max-width: none; margin: clamp(48px, 5vw, 72px) 0 20px; color: var(--text); font-size: 20px; font-weight: 600; letter-spacing: -.01em; line-height: 1.35; }
-.case-section-body blockquote { margin: 70px 0 0; padding: 26px 0 0 34px; border-top: 1px solid var(--border); border-left: 5px solid var(--sage); font-size: clamp(1.25rem, 2vw, 2rem); font-weight: 600; letter-spacing: -.035em; }
+.case-section-body blockquote { margin: 48px 0 0; padding: 0 0 0 34px; border-left: 5px solid var(--sage); font-size: 24px; font-weight: 600; letter-spacing: -.035em; line-height: 1.4; }
 /* Emphasised quote group (e.g. questions a manager might ask) */
 .case-quote-group { margin: 48px 0 0; }
 .case-quote-intro { margin: 0 0 24px; color: var(--text-secondary); font-size: clamp(1rem, 1.05vw, 1.15rem); font-weight: 600; }
