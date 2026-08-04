@@ -381,11 +381,11 @@ export const projects: Project[] = [
         "The AI Reply feature was already useful as a starting point, but users did not consistently trust the result. Analytics showed that nearly 70% of submitted replies were modified before being sent. Customers were using the AI, but still spending time checking its tone, shortening the response, correcting assumptions, or rewriting it to sound more like their hotel.",
       ],
       bodyImage: {
-        src: "/images/project_brand_voice_config/project_02_ai_reply_modify_log.png",
+        src: "/images/project_brand_voice_config/project_02_ai_reply_ismodify_log.png",
         alt: "Analytics log showing AI reply modifications, with nearly 70% of replies edited before sending.",
-        width: 1042,
-        height: 740,
-        maxHeight: 560,
+        width: 1487,
+        height: 1058,
+        maxHeight: 400,
       },
       bodyAfter: [
         "The existing controls did little to resolve this. Selecting a short response did not always produce something noticeably shorter, while formal and informal options behaved inconsistently across languages. Most replies also followed a predictable formula: thank the guest, repeat something from the review, and finish with a generic closing. Even when the wording changed, the structure made each response feel much like the last.",
@@ -524,7 +524,7 @@ export const projects: Project[] = [
         alt: "Concept mockup of the brand-voice settings, showing default configuration, brand description, and policy layers.",
         width: 755,
         height: 579,
-        maxHeight: 560,
+        maxHeight: 400,
       },
     },
     learning:
@@ -540,7 +540,7 @@ export const projects: Project[] = [
         alt: "Diagram of the structured prompt architecture, mapping interface settings to prompt sections.",
         width: 755,
         height: 411,
-        maxHeight: 460,
+        maxHeight: 400,
       },
       imageRow: [
         {

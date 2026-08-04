@@ -39,7 +39,9 @@
       "Bash(ls -la /Users/hui-shanchen/ClaudeCode/HSC_Portfolio/public/images/project_brand_voice_config/project_02_ai_reply_modify_log.png)",
       "Bash(sips -g pixelWidth -g pixelHeight /Users/hui-shanchen/ClaudeCode/HSC_Portfolio/public/images/project_brand_voice_config/project_02_ai_reply_modify_log.png)",
       "Bash(sips -g pixelWidth -g pixelHeight /Users/hui-shanchen/ClaudeCode/HSC_Portfolio/public/images/project_brand_voice_config/project_02_brand_voice_settings_concept.png)",
-      "Bash(sips -g pixelWidth -g pixelHeight /Users/hui-shanchen/ClaudeCode/HSC_Portfolio/public/images/project_brand_voice_config/project_02_prompt_structure.png)"
+      "Bash(sips -g pixelWidth -g pixelHeight /Users/hui-shanchen/ClaudeCode/HSC_Portfolio/public/images/project_brand_voice_config/project_02_prompt_structure.png)",
+      "Bash(ls -la /Users/hui-shanchen/ClaudeCode/HSC_Portfolio/public/images/project_brand_voice_config/project_02_ai_reply_ismodify_log.png)",
+      "Bash(sips -g pixelWidth -g pixelHeight /Users/hui-shanchen/ClaudeCode/HSC_Portfolio/public/images/project_brand_voice_config/project_02_ai_reply_ismodify_log.png)"
     ]
   }
 }
