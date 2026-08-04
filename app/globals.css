@@ -174,7 +174,6 @@ section { scroll-margin-top: 86px; }
 .project-number { font-size: clamp(2.5rem, 4vw, 4.5rem); font-weight: 600; letter-spacing: -0.06em; line-height: .8; transition: color 250ms ease; }
 .project-details span { margin: 0 0 14px; color: var(--text-secondary); font-size: 12px; font-weight: 600; letter-spacing: 0; line-height: 1.4; text-transform: none; }
 .project-primary h3 { margin: 0; font-size: 32px; font-weight: 700; letter-spacing: -0.05em; line-height: 48px; text-wrap: balance; }
-.project-row:first-child .project-primary h3 { white-space: nowrap; text-wrap: nowrap; }
 .project-details { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: 32px; }
 .project-details div { padding-top: 14px; border-top: 1px solid var(--border); }
 .project-details span { display: block; margin-bottom: 5px; }

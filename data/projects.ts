@@ -168,15 +168,15 @@ export type Project = {
 export const projects: Project[] = [
   {
     number: "01",
-    title: "Turn review text into actionable AI Insights",
-    slug: "turn-review-text-into-actionable-ai-insights",
+    title: "AI Insights: Turn guest reviews into clear, actionable decisions",
+    slug: "ai-insights-turn-guest-reviews-into-clear-actionable-decisions",
     accent: "sage",
     challenge:
-      "Hotel managers struggled to turn large volumes of guest feedback into clear, timely priorities.",
+      "Hotel teams struggled to turn large volumes of guest feedback into clear priorities and practical next steps.",
     approach:
-      "Customer interviews, design workshops, prototyping, and usability testing shaped a flexible AI-powered insights experience.",
+      "Run design sprint, interviewed 15 hospitality professionals, tested concepts, and designed an AI experience that combined concise summaries, supporting evidence, and prioritized recommendations.",
     outcome:
-      "Validated strong demand for custom categories and identified key improvements to make insights easier to create, trust, and act on.",
+      "The solution summarized key themes, connected insights to source reviews, and suggested prioritized actions for improvement.",
     facts: {
       overview:
         "An AI Insights MVP that turns guest review text into recommended actions for hotel teams across the EMEA region.",
@@ -185,11 +185,11 @@ export const projects: Project[] = [
     },
     heroAlt:
       "Placeholder for the AI Insights product hero image showing grouped guest-feedback insights and recommended actions.",
-    cardImage: "/images/project_ai_insights/project-01-ai-insights.png",
+    cardImage: "/images/project_ai_insights/project-01-ai-insights_re.png",
     cardImageAlt:
       "Homepage screenshot from the Turn review text into actionable AI Insights project.",
     cardImagePosition: "center 50%",
-    heroImage: "/images/project_ai_insights/project-01-ai-insights.png",
+    heroImage: "/images/project_ai_insights/project-01-ai-insights_re.png",
     context: {
       lead: "Making AI Insights relevant to every hotel",
       body: [
