@@ -20,11 +20,19 @@ export type TokenPyramid = {
  * A section with a large lead statement followed by body paragraphs, and
  * optionally a code example / pyramid plus closing paragraphs after it.
  */
+/** A pair (or more) of images shown in a responsive row between prose blocks. */
+export type ImageRowItem = { src: string; alt: string };
+/** A single full-width image rendered at its natural aspect ratio. */
+export type InlineImage = { src: string; alt: string; width: number; height: number };
 export type CaseNarrative = {
   lead: string;
   body: string[];
   codeExample?: CodeExample;
   pyramid?: TokenPyramid;
+  /** Optional single full-width image rendered directly after `body`. */
+  bodyImage?: InlineImage;
+  /** Optional image row rendered directly after `body`, before `bodyAfter`. */
+  imageRow?: ImageRowItem[];
   bodyAfter?: string[];
 };
 /** An emphasised group of quotes (e.g. questions a user might ask). */
@@ -603,7 +611,7 @@ export const projects: Project[] = [
         swatch: "#3917E5",
         labelColor: "#202326",
         tiers: [
-          { label: "Semantic token", token: "color-background-primary-bold", fill: "#c9cdd2" },
+          { label: "Semantic token", token: "color-background-primary", fill: "#c9cdd2" },
           { label: "Global token", token: "color-blue-600", fill: "#dcdfe3" },
           { label: "Raw value", token: "#3917E5", fill: "#eef0f2" },
         ],
@@ -611,13 +619,13 @@ export const projects: Project[] = [
           {
             label: "Global colours & tokens",
             hint: "Recommended: 1200 × 720 px",
-            src: "/images/project_design_system/global-colors.png",
+            src: "/images/project_design_system/project_03_global-colors_new.png",
             alt: "Design system global colours — blue, green, and yellow scales shown alongside the theme variable tokens.",
           },
           {
             label: "Badge component",
             hint: "Recommended: 1200 × 720 px",
-            src: "/images/project_design_system/badge-component.png",
+            src: "/images/project_design_system/project_03_badge_component_new.png",
             alt: "Badge component documentation showing its variants and states across light and dark themes.",
           },
         ],
@@ -689,6 +697,22 @@ export const projects: Project[] = [
       body: [
         "A component library alone would not solve the problem. Without clear guidance, the same components could still be used inconsistently. I documented components as they were developed, covering their purpose, anatomy, variants, states, behaviour, and appropriate use cases. For example, the documentation for the flag component did more than display its visual variations. It explained how the component was constructed, when each variation should be used, and how it should behave within the interface. Writing the documentation also became part of the design process. Whenever a component was difficult to explain, it often revealed that its purpose or structure was not yet clear enough.",
         "The system was maintained in Figma for designers and documented in Zeroheight so developers, product managers, and other stakeholders could access the same guidance without navigating the source design files.",
+      ],
+      bodyImage: {
+        src: "/images/project_design_system/project_03_figma_modal.png",
+        alt: "Figma component documentation modal showing structure and guidance for a component.",
+        width: 1797,
+        height: 571,
+      },
+      imageRow: [
+        {
+          src: "/images/project_design_system/project_03_zeroheight_modal.png",
+          alt: "Zeroheight component documentation modal showing a component's guidance.",
+        },
+        {
+          src: "/images/project_design_system/project_03_zeroheight_modal_usage.png",
+          alt: "Zeroheight documentation modal showing a component's usage guidelines.",
+        },
       ],
     },
     solutionExtra: {

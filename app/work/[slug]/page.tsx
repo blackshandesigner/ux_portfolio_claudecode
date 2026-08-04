@@ -320,9 +320,49 @@ type AnyNarrative = {
   quoteGroup?: { intro?: string; quotes: string[] };
   listIntro?: string;
   list?: string[];
+  bodyImage?: { src: string; alt: string; width: number; height: number };
+  imageRow?: { src: string; alt: string }[];
   bodyAfter?: string[];
   question?: string;
 };
+
+/** A single full-width image rendered at its natural aspect ratio. */
+function InlineImage({
+  image,
+}: {
+  image: { src: string; alt: string; width: number; height: number };
+}) {
+  return (
+    <figure className="case-inline-image">
+      <Image
+        src={image.src}
+        alt={image.alt}
+        width={image.width}
+        height={image.height}
+        sizes="(max-width: 1320px) 100vw, 1320px"
+      />
+    </figure>
+  );
+}
+
+/** Two (or more) images shown in a responsive row, reusing the token-image styles. */
+function ImageRow({ items }: { items: { src: string; alt: string }[] }) {
+  return (
+    <div className="token-image-row">
+      {items.map((img) => (
+        <figure className="token-image" key={img.src}>
+          <Image
+            src={img.src}
+            alt={img.alt}
+            fill
+            sizes="(max-width: 700px) 100vw, 50vw"
+            style={{ objectFit: "contain" }}
+          />
+        </figure>
+      ))}
+    </div>
+  );
+}
 
 /** Layered token pyramid diagram (top → bottom), with dashed chips on the right. */
 function TokenPyramid({
@@ -424,7 +464,7 @@ function TokenPyramid({
                   alt={img.alt ?? img.label}
                   fill
                   sizes="(max-width: 700px) 100vw, 50vw"
-                  style={{ objectFit: "contain" }}
+                  style={{ objectFit: "contain", padding: "16px 0" }}
                 />
               </figure>
             ) : (
@@ -506,6 +546,8 @@ function NarrativePart({
         {narrative.lead}
       </p>
       <Paragraphs items={narrative.body} />
+      {narrative.bodyImage ? <InlineImage image={narrative.bodyImage} /> : null}
+      {narrative.imageRow ? <ImageRow items={narrative.imageRow} /> : null}
       {narrative.codeExample ? (
         <CodeExample example={narrative.codeExample} />
       ) : null}
@@ -550,6 +592,8 @@ function ProseBlock({
         {narrative.lead}
       </p>
       <Paragraphs items={narrative.body} />
+      {narrative.bodyImage ? <InlineImage image={narrative.bodyImage} /> : null}
+      {narrative.imageRow ? <ImageRow items={narrative.imageRow} /> : null}
       {narrative.codeExample ? (
         <CodeExample example={narrative.codeExample} />
       ) : null}

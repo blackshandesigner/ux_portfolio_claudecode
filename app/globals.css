@@ -379,7 +379,7 @@ section { scroll-margin-top: 86px; }
 .case-code-block { display: grid; gap: 4px; padding: 20px 24px; background: var(--bg-tint); border: 1px solid var(--border); }
 .case-code-block code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; font-size: 14px; line-height: 1.7; color: var(--text); }
 /* Token pyramid diagram */
-.token-pyramid { display: grid; place-items: center; height: 480px; margin: 0 0 20px; padding: clamp(16px, 3vw, 32px); background: #f4f5f7; border: 1px solid var(--border); }
+.token-pyramid { display: grid; place-items: center; height: 480px; margin: 0 0 16px; padding: clamp(16px, 3vw, 32px); background: #f4f5f7; border: 1px solid var(--border); border-radius: 12px; }
 .token-pyramid-svg { display: block; width: 100%; max-width: 760px; height: auto; max-height: 100%; }
 .token-pyramid text { font-family: var(--font-montserrat), Montserrat, Arial, sans-serif; }
 /* Image placeholders beside/after the pyramid, shown in a row */
@@ -387,6 +387,8 @@ section { scroll-margin-top: 86px; }
 .token-image-row .case-image-placeholder { min-height: 0; aspect-ratio: 16 / 10; background: #fff; border-color: var(--border); }
 .token-image-row .case-image-placeholder > svg { color: var(--text-muted); }
 .token-image { position: relative; margin: 0; aspect-ratio: 16 / 10; overflow: hidden; background: #fff; border: 1px solid var(--border); border-radius: 12px; }
+.case-inline-image { aspect-ratio: auto; margin: 0 0 16px; padding: 16px; overflow: hidden; background: #fff; border: 1px solid var(--border); border-radius: 12px; }
+.case-inline-image img { display: block; width: 100%; height: auto; }
 @media (max-width: 700px) {
   .token-pyramid { height: auto; }
   .token-image-row { grid-template-columns: 1fr; }
@@ -408,15 +410,14 @@ section { scroll-margin-top: 86px; }
 .case-method-grid div:nth-child(even) { border-right: 0; }
 .case-method-grid span, .case-insight-list > article > span, .decision-grid article > span { color: var(--sage-dark); font-size: .7rem; font-weight: 600; }
 .case-method-grid p { margin: 0; font-size: 1.05rem; font-weight: 600; }
-.case-inline-image { min-height: 0; aspect-ratio: 16 / 10; margin-top: 48px; }
 .case-insight-list { border-top: 1px solid var(--border); }
 .case-insight-list article { display: grid; grid-template-columns: 50px 1fr 1.4fr; gap: 30px; padding: 32px 0; border-bottom: 1px solid var(--border); }
 .case-insight-list h3 { margin: 0; font-size: 1.2rem; letter-spacing: -.03em; }
 .case-insight-list p { margin: 0; color: var(--text-secondary); font-size: .88rem; }
-.decision-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
-.decision-grid article { min-height: 240px; padding: 26px; background: var(--bg-tint); border-right: 8px solid #fff; transition: background 180ms ease; }
+.decision-grid { display: grid; grid-template-columns: repeat(3, 1fr); column-gap: 16px; }
+.decision-grid article { min-height: 240px; padding: 26px; background: var(--bg-tint); border-radius: 12px; transition: background 180ms ease; }
 .decision-grid article:nth-child(2) { background: var(--lavender-light); }
-.decision-grid article:nth-child(3) { background: var(--peach-light); border-right: 0; }
+.decision-grid article:nth-child(3) { background: var(--peach-light); }
 .decision-grid h3 { margin: 24px 0 14px; font-size: 1.3rem; letter-spacing: -.035em; line-height: 1.15; }
 .decision-grid p { margin: 0; color: var(--text-secondary); font-size: .83rem; }
 .flow-diagram { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; gap: 18px; align-items: center; }
@@ -459,8 +460,8 @@ section { scroll-margin-top: 86px; }
   .case-title-panel { min-height: 500px; }
   .case-cover { min-height: min(78vw, 620px); }
   .case-content-section { grid-template-columns: 1fr; gap: 44px; }
-  .decision-grid { grid-template-columns: 1fr; gap: 8px; }
-  .decision-grid article { min-height: 240px; border-right: 0; }
+  .decision-grid { grid-template-columns: 1fr; gap: 16px; }
+  .decision-grid article { min-height: 240px; }
   .decision-grid h3 { margin-top: 24px; }
 }
 
