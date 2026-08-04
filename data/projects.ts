@@ -197,11 +197,11 @@ export const projects: Project[] = [
     },
     heroAlt:
       "Placeholder for the AI Insights product hero image showing grouped guest-feedback insights and recommended actions.",
-    cardImage: "/images/project_ai_insights/project-01-ai-insights_re.png",
+    cardImage: "/images/project_ai_insights/project_01_ai_insights_re.png",
     cardImageAlt:
       "Homepage screenshot from the Turn review text into actionable AI Insights project.",
     cardImagePosition: "center 50%",
-    heroImage: "/images/project_ai_insights/project-01-ai-insights_re.png",
+    heroImage: "/images/project_ai_insights/project_01_ai_insights_re.png",
     context: {
       lead: "Help hotels understand what guests are saying and what to do next",
       body: [
