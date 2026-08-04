@@ -35,7 +35,11 @@
       "Bash(curl -s -o /dev/null -w \"flag-component.png -> %{http_code}\\\\n\" \"http://localhost:3000/images/flag-component.png\")",
       "Bash(sips -g pixelWidth -g pixelHeight flag-component.png)",
       "Bash(curl -s -o /dev/null -w \"badge -> %{http_code}\\\\n\" http://localhost:3000/images/badge-component.png)",
-      "Bash(sips -g pixelWidth -g pixelHeight /Users/hui-shanchen/ClaudeCode/HSC_Portfolio/public/images/project_design_system/project_03_figma_modal.png)"
+      "Bash(sips -g pixelWidth -g pixelHeight /Users/hui-shanchen/ClaudeCode/HSC_Portfolio/public/images/project_design_system/project_03_figma_modal.png)",
+      "Bash(ls -la /Users/hui-shanchen/ClaudeCode/HSC_Portfolio/public/images/project_brand_voice_config/project_02_ai_reply_modify_log.png)",
+      "Bash(sips -g pixelWidth -g pixelHeight /Users/hui-shanchen/ClaudeCode/HSC_Portfolio/public/images/project_brand_voice_config/project_02_ai_reply_modify_log.png)",
+      "Bash(sips -g pixelWidth -g pixelHeight /Users/hui-shanchen/ClaudeCode/HSC_Portfolio/public/images/project_brand_voice_config/project_02_brand_voice_settings_concept.png)",
+      "Bash(sips -g pixelWidth -g pixelHeight /Users/hui-shanchen/ClaudeCode/HSC_Portfolio/public/images/project_brand_voice_config/project_02_prompt_structure.png)"
     ]
   }
 }

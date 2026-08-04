@@ -22,8 +22,8 @@ export type TokenPyramid = {
  */
 /** A pair (or more) of images shown in a responsive row between prose blocks. */
 export type ImageRowItem = { src: string; alt: string };
-/** A single full-width image rendered at its natural aspect ratio. */
-export type InlineImage = { src: string; alt: string; width: number; height: number };
+/** A single image rendered at its natural aspect ratio (full-width unless `maxHeight` caps it). */
+export type InlineImage = { src: string; alt: string; width: number; height: number; maxHeight?: number };
 export type CaseNarrative = {
   lead: string;
   body: string[];
@@ -31,9 +31,17 @@ export type CaseNarrative = {
   pyramid?: TokenPyramid;
   /** Optional single full-width image rendered directly after `body`. */
   bodyImage?: InlineImage;
-  /** Optional image row rendered directly after `body`, before `bodyAfter`. */
+  /** Optional emphasised quote/callout group rendered after `body`. */
+  quoteGroup?: CaseQuoteGroup;
+  /** Optional numbered cards (decision-grid style) rendered after `body`. */
+  cards?: CaseDecision[];
+  /** Optional image row rendered at the very bottom, after `bodyAfter`. */
   imageRow?: ImageRowItem[];
   bodyAfter?: string[];
+  /** Optional single image rendered at the very bottom, after `bodyAfter`. */
+  bottomImage?: InlineImage;
+  /** Optional prose rendered after `imageRow`/`bottomImage` (below trailing images). */
+  closing?: string[];
 };
 /** An emphasised group of quotes (e.g. questions a user might ask). */
 export type CaseQuoteGroup = { intro?: string; quotes: string[] };
@@ -44,13 +52,19 @@ export type ListNarrative = {
   listIntro?: string;
   list?: string[];
   bodyAfter?: string[];
+  /** Optional single image rendered at the very bottom, after `bodyAfter`. */
+  bottomImage?: InlineImage;
 };
 /** The Problem section: lead, prose, an optional quote group, and closing prose. */
 export type ProblemNarrative = {
   lead: string;
   body?: string[];
+  /** Optional single full-width image rendered directly after `body`. */
+  bodyImage?: InlineImage;
   quoteGroup?: CaseQuoteGroup;
   bodyAfter?: string[];
+  /** Optional image row rendered at the very bottom, after `bodyAfter`. */
+  imageRow?: ImageRowItem[];
   /** Optional "How might we" framing rendered as a blockquote. */
   question?: string;
 };
@@ -365,7 +379,26 @@ export const projects: Project[] = [
       lead: "A first draft that still needed rewriting",
       body: [
         "The AI Reply feature was already useful as a starting point, but users did not consistently trust the result. Analytics showed that nearly 70% of submitted replies were modified before being sent. Customers were using the AI, but still spending time checking its tone, shortening the response, correcting assumptions, or rewriting it to sound more like their hotel.",
+      ],
+      bodyImage: {
+        src: "/images/project_brand_voice_config/project_02_ai_reply_modify_log.png",
+        alt: "Analytics log showing AI reply modifications, with nearly 70% of replies edited before sending.",
+        width: 1042,
+        height: 740,
+        maxHeight: 560,
+      },
+      bodyAfter: [
         "The existing controls did little to resolve this. Selecting a short response did not always produce something noticeably shorter, while formal and informal options behaved inconsistently across languages. Most replies also followed a predictable formula: thank the guest, repeat something from the review, and finish with a generic closing. Even when the wording changed, the structure made each response feel much like the last.",
+      ],
+      imageRow: [
+        {
+          src: "/images/project_brand_voice_config/project_02_ai_reply_settings_old.png",
+          alt: "The original AI reply settings, with limited tone and length controls.",
+        },
+        {
+          src: "/images/project_brand_voice_config/project_02_ai_reply_editor.png",
+          alt: "The AI reply editor showing a generated draft before manual edits.",
+        },
       ],
     },
     research: [
@@ -378,8 +411,20 @@ export const projects: Project[] = [
       lead: "Looking beyond the edit rate",
       body: [
         "To understand why users were rewriting so much, we brought together feedback from Customer Success, prospect conversations, customer interviews, behavioral analytics, and a review of the existing generation system.",
-        "The same themes appeared repeatedly. Customers described the replies as too formal and too long. They wanted more control over tone, better support for less common languages, and a way to teach the system how their brand communicates. Some asked to use their own templates as a structural foundation. Others wanted to upload brand guidelines or examples. One prospect chose a competitor because its AI reply experience appeared more intuitive.",
-        "Interviews with hospitality teams also showed that speed was not the main concern. Personalization and professional quality were more important. None of the interviewed customers wanted to enable fully automated replies without first seeing the system perform reliably over time.",
+      ],
+      quoteGroup: {
+        intro: "Customer said:",
+        quotes: [
+          "Replies felt too formal and too long.",
+          "More control over tone was needed.",
+          "Less common languages needed better support.",
+          "The system should learn how each brand communicates.",
+          "Existing templates should be usable as a structural foundation.",
+          "Brand guidelines and examples should be uploadable.",
+          "Personalization and professional quality mattered more than speed.",
+        ],
+      },
+      bodyAfter: [
         "The product did not need to generate faster. It needed to earn trust.",
       ],
     },
@@ -463,18 +508,24 @@ export const projects: Project[] = [
     outcomesNarrative: {
       lead: "Separating personality from policy",
       body: [
-        "Giving customers more control introduced an important distinction: not everything should be customizable in the same way.",
-        "Brand voice determines how a reply sounds. Policy constraints determine what it is allowed to say.",
-        "A hotel could choose to be warm, playful, formal, luxurious, or minimal. But the system should still avoid revealing an anonymous guest’s name, inventing information, repeating harmful language, mentioning competitors, or making unsupported promises.",
+        "Brand voice determines how a reply sounds. Policy constraints determine what it is allowed to say. A hotel could choose to be warm, playful, formal, luxurious, or minimal. But the system should still avoid revealing an anonymous guest’s name, inventing information, repeating harmful language, mentioning competitors, or making unsupported promises.",
       ],
       listIntro: "The configuration was therefore divided into separate layers:",
       list: [
-        "The default settings controlled tone, reply length, and signature behavior.",
-        "A brand description added the individual character of the hotel. Policy constraints and custom rules defined the boundaries that every generated reply needed to respect.",
+        "**The default settings controlled tone, reply length, and signature behavior.**",
+        "**A brand description added the individual character of the hotel.**",
+        "**Policy constraints and custom rules defined the boundaries that every generated reply needed to respect.**",
       ],
       bodyAfter: [
         "This made the configuration easier for customers to understand and made the resulting behavior easier for the team to test.",
       ],
+      bottomImage: {
+        src: "/images/project_brand_voice_config/project_02_brand_voice_settings_concept.png",
+        alt: "Concept mockup of the brand-voice settings, showing default configuration, brand description, and policy layers.",
+        width: 755,
+        height: 579,
+        maxHeight: 560,
+      },
     },
     learning:
       "Structured prompting is a design problem as much as a technical one. Giving people the right controls up front is what makes AI output feel like theirs.",
@@ -483,6 +534,25 @@ export const projects: Project[] = [
       body: [
         "The previous prompt had been created for an older generation of language models. Instructions for tone, formality, length, business rules, and response structure competed within the same prompt. This made it difficult to predict which settings the AI would prioritize.",
         "We reorganized the generation system into a structured architecture with distinct sections for the model’s role, personality, goal, success criteria, constraints, output, and stop rules. Each part of the interface could then be mapped to a clear part of the prompt.",
+      ],
+      bodyImage: {
+        src: "/images/project_brand_voice_config/project_02_prompt_structure.png",
+        alt: "Diagram of the structured prompt architecture, mapping interface settings to prompt sections.",
+        width: 755,
+        height: 411,
+        maxHeight: 460,
+      },
+      imageRow: [
+        {
+          src: "/images/project_brand_voice_config/project_02_brand_voice_config_default.png",
+          alt: "The default brand-voice configuration, with a professional ready-to-use setup.",
+        },
+        {
+          src: "/images/project_brand_voice_config/project_02_brand_voice_config_freetext.png",
+          alt: "The free-text brand-voice configuration, letting customers describe their voice in their own words.",
+        },
+      ],
+      closing: [
         "The hotel’s brand description informed the personality. Reply length and formatting belonged to the output. Cultural rules and factual grounding belonged to the constraints. Fallback behavior could be defined separately through stop rules. Rather than being a hidden technical detail, the new prompt architecture became part of the product design. It connected what customers selected in the interface to the behavior they expected from the generated reply.",
       ],
     },
@@ -505,9 +575,23 @@ export const projects: Project[] = [
           lead: "Changing the model without changing everything at once",
           body: [
             "AI behavior can change in unexpected ways when a model is replaced, particularly across languages and sensitive review contexts. To protect existing customers, the new configuration was designed to run separately from the current production system.",
-            "The first phase focused on building the new brand voice experience, prompt structure, default configuration, and centralized constraints while the existing model remained active.",
-            "The second phase would introduce the new system to internal users and a selected group of customers. Their feedback would help us improve the prompt, interface, multilingual behavior, and quality metrics.",
-            "Only after the experience proved stable would the remaining customers be migrated gradually. The existing configuration would be retired once the new version consistently met the expected standard.",
+          ],
+          cards: [
+            {
+              title: "Build in parallel",
+              detail:
+                "The new brand voice experience, prompt structure, default configuration, and centralized constraints were built while the existing model remained active.",
+            },
+            {
+              title: "Pilot with users",
+              detail:
+                "The system was introduced to internal users and a selected group of customers, whose feedback improved the prompt, interface, multilingual behavior, and quality metrics.",
+            },
+            {
+              title: "Migrate gradually",
+              detail:
+                "Remaining customers were migrated once the experience proved stable, and the existing configuration was retired once the new version consistently met the standard.",
+            },
           ],
         },
       },
@@ -527,9 +611,7 @@ export const projects: Project[] = [
         narrative: {
           lead: "Measuring whether trust improves",
           body: [
-            "The project was still moving through discovery and phased development, so the final impact could not yet be measured.",
-            "The primary target was to reduce the percentage of replies edited before publication from nearly 70% to 50% or less. We also aimed to reduce complaints about incorrect formality by at least 80%, halve customer-reported hallucination issues, and increase regular usage of AI Reply across active properties.",
-            "These measures focused on behavior rather than output volume. Generating more responses would mean little if users still had to rewrite them.",
+            "The project was still moving through discovery and phased development, so the final impact could not yet be measured. The primary target was to reduce the percentage of replies edited before publication from nearly 70% to 50% or less. We also aimed to reduce complaints about incorrect formality by at least 80%, halve customer-reported hallucination issues, and increase regular usage of AI Reply across active properties. These measures focused on behavior rather than output volume. Generating more responses would mean little if users still had to rewrite them.",
           ],
         },
       },
@@ -549,9 +631,8 @@ export const projects: Project[] = [
     sectionPlan: [
       { title: "Context", parts: ["context"] },
       { title: "Problem", parts: ["problem", "research"] },
-      { title: "Design decisions", parts: ["insights", "decisions", "development"] },
-      { title: "Solution", parts: ["solution", "outcomes", "learning", { extra: 2 }] },
-      { title: "Scope & rollout", parts: [{ extra: 0 }, { extra: 1 }] },
+      { title: "Solution", parts: ["solution", "outcomes", "learning"] },
+      { title: "Rollout", parts: [{ extra: 1 }] },
       { title: "Outcomes", parts: [{ extra: 3 }, { extra: 4 }] },
     ],
   },

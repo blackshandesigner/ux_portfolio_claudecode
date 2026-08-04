@@ -320,17 +320,20 @@ type AnyNarrative = {
   quoteGroup?: { intro?: string; quotes: string[] };
   listIntro?: string;
   list?: string[];
-  bodyImage?: { src: string; alt: string; width: number; height: number };
+  bodyImage?: { src: string; alt: string; width: number; height: number; maxHeight?: number };
+  cards?: { title: string; detail: string }[];
   imageRow?: { src: string; alt: string }[];
   bodyAfter?: string[];
+  bottomImage?: { src: string; alt: string; width: number; height: number; maxHeight?: number };
+  closing?: string[];
   question?: string;
 };
 
-/** A single full-width image rendered at its natural aspect ratio. */
+/** A single image rendered at its natural aspect ratio (full-width unless `maxHeight` caps it). */
 function InlineImage({
   image,
 }: {
-  image: { src: string; alt: string; width: number; height: number };
+  image: { src: string; alt: string; width: number; height: number; maxHeight?: number };
 }) {
   return (
     <figure className="case-inline-image">
@@ -340,6 +343,11 @@ function InlineImage({
         width={image.width}
         height={image.height}
         sizes="(max-width: 1320px) 100vw, 1320px"
+        style={
+          image.maxHeight
+            ? { width: "auto", height: image.maxHeight, maxWidth: "100%", margin: "0 auto" }
+            : undefined
+        }
       />
     </figure>
   );
@@ -547,7 +555,17 @@ function NarrativePart({
       </p>
       <Paragraphs items={narrative.body} />
       {narrative.bodyImage ? <InlineImage image={narrative.bodyImage} /> : null}
-      {narrative.imageRow ? <ImageRow items={narrative.imageRow} /> : null}
+      {narrative.cards ? (
+        <div className="decision-grid">
+          {narrative.cards.map((card, i) => (
+            <article key={card.title}>
+              <span>0{i + 1}</span>
+              <h3>{card.title}</h3>
+              <p>{card.detail}</p>
+            </article>
+          ))}
+        </div>
+      ) : null}
       {narrative.codeExample ? (
         <CodeExample example={narrative.codeExample} />
       ) : null}
@@ -568,11 +586,14 @@ function NarrativePart({
       {narrative.list ? (
         <ul className="case-bullet-list">
           {narrative.list.map((item) => (
-            <li key={item}>{item}</li>
+            <li key={item}>{renderInline(item)}</li>
           ))}
         </ul>
       ) : null}
       <Paragraphs items={narrative.bodyAfter} />
+      {narrative.imageRow ? <ImageRow items={narrative.imageRow} /> : null}
+      {narrative.bottomImage ? <InlineImage image={narrative.bottomImage} /> : null}
+      <Paragraphs items={narrative.closing} />
       {narrative.question ? <blockquote>{narrative.question}</blockquote> : null}
     </>
   );
@@ -593,12 +614,14 @@ function ProseBlock({
       </p>
       <Paragraphs items={narrative.body} />
       {narrative.bodyImage ? <InlineImage image={narrative.bodyImage} /> : null}
-      {narrative.imageRow ? <ImageRow items={narrative.imageRow} /> : null}
       {narrative.codeExample ? (
         <CodeExample example={narrative.codeExample} />
       ) : null}
       {narrative.pyramid ? <TokenPyramid pyramid={narrative.pyramid} /> : null}
       <Paragraphs items={narrative.bodyAfter} />
+      {narrative.imageRow ? <ImageRow items={narrative.imageRow} /> : null}
+      {narrative.bottomImage ? <InlineImage image={narrative.bottomImage} /> : null}
+      <Paragraphs items={narrative.closing} />
     </>
   );
 }

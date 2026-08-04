@@ -370,6 +370,7 @@ section { scroll-margin-top: 86px; }
 .case-bullet-list { margin: 0 0 26px; padding: 0; list-style: none; }
 .case-bullet-list li { position: relative; margin: 0 0 12px; padding-left: 24px; color: var(--text-secondary); font-size: 16px; font-weight: 400; line-height: 1.75; }
 .case-bullet-list li::before { content: ""; position: absolute; left: 4px; top: 11px; width: 6px; height: 6px; background: var(--sage); border-radius: 50%; }
+.case-bullet-list li strong { font-weight: 600; color: var(--text); }
 .case-bullet-list li:last-child { margin-bottom: 0; }
 .case-section-body > .case-bullet-list:last-child { margin-bottom: 0; }
 /* Token / code example */
@@ -384,6 +385,7 @@ section { scroll-margin-top: 86px; }
 .token-pyramid text { font-family: var(--font-montserrat), Montserrat, Arial, sans-serif; }
 /* Image placeholders beside/after the pyramid, shown in a row */
 .token-image-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 0 0 26px; }
+.decision-grid + .token-image-row { margin-top: 16px; }
 .token-image-row .case-image-placeholder { min-height: 0; aspect-ratio: 16 / 10; background: #fff; border-color: var(--border); }
 .token-image-row .case-image-placeholder > svg { color: var(--text-muted); }
 .token-image { position: relative; margin: 0; aspect-ratio: 16 / 10; overflow: hidden; background: #fff; border: 1px solid var(--border); border-radius: 12px; }
