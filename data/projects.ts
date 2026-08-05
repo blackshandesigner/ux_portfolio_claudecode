@@ -208,7 +208,16 @@ export const projects: Project[] = [
         "Hospitality teams had plenty of guest feedback, but not enough clarity.",
         "We collect large volumes of reviews across booking platforms, surveys, and other feedback channels for the hotels. While this data contains valuable signals, the existing text-analysis experience made those signals difficult to interpret.",
         "Users could see individual topics, sentiment breakdowns, and mention counts, but understanding the bigger picture still required manual effort. Hotel teams had to move through complex tables, compare multiple categories, and interpret the data themselves before deciding what to improve.",
-        "The challenge was not simply to analyse more reviews. It was to help users understand ==what guests were saying, why it mattered, and what they should do next.==",
+        "The challenge was not simply to analyse more reviews. It was to help users understand:",
+      ],
+      lists: [
+        {
+          items: [
+            "**What guests were saying**",
+            "**Why it mattered**",
+            "**What they should do next**",
+          ],
+        },
       ],
     },
     problem: {
@@ -246,7 +255,7 @@ export const projects: Project[] = [
       body: [
         "Together with PM, we ran a design sprint to align the team around the purpose of the new feature, the major risks, and the questions we needed to answer.",
         "Our primary goal was straightforward:",
-        "**Enable customers to generate useful insights from their collected feedback with as little effort as possible.**",
+        "**“Enable customers to generate useful insights from their collected feedback with as little effort as possible.”**",
       ],
       bodyImage: {
         src: "/images/project_ai_insights/project_01_design_sprint.png",
@@ -259,15 +268,15 @@ export const projects: Project[] = [
         {
           intro: "We also defined two target success indicators:",
           items: [
-            "90% of interviewed users should feel that AI Insights helps them take action and improve their business.",
-            "80% of customers should use AI Insights at least once a week to track progress and support decisions.",
+            "**90% of interviewed users should feel that AI Insights helps them take action and improve their business.**",
+            "**80% of customers should use AI Insights at least once a week to track progress and support decisions.**",
           ],
         },
         {
           intro: "The workshop also surfaced two important risks:",
           items: [
-            "Would users trust AI-generated text analysis?",
-            "Would the recommended improvements be realistic and actionable?",
+            "**Would users trust AI-generated text analysis?**",
+            "**Would the recommended improvements be realistic and actionable?**",
           ],
         },
       ],
