@@ -38,7 +38,7 @@ export type CaseNarrative = {
   /** Optional numbered cards (decision-grid style) rendered after `body`. */
   cards?: CaseDecision[];
   /** Optional labelled bullet lists (each with an intro line) rendered after `body`. */
-  lists?: { intro?: string; items: string[] }[];
+  lists?: { intro?: string; items: string[]; inline?: boolean }[];
   /** Optional image row rendered at the very bottom, after `bodyAfter`. */
   imageRow?: ImageRowItem[];
   bodyAfter?: string[];
@@ -46,6 +46,10 @@ export type CaseNarrative = {
   bottomImage?: InlineImage;
   /** Optional prose rendered after `imageRow`/`bottomImage` (below trailing images). */
   closing?: string[];
+  /** Optional emphasised framing rendered as a blockquote (design-challenge style). */
+  question?: string;
+  /** When true, the `question` blockquote is wrapped in accent-coloured quote marks. */
+  questionQuoted?: boolean;
 };
 /** An emphasised group of quotes (e.g. questions a user might ask). */
 export type CaseQuoteGroup = { intro?: string; quotes: string[] };
@@ -59,7 +63,7 @@ export type ListNarrative = {
   listIntro?: string;
   list?: string[];
   /** Optional labelled bullet lists (each with an intro line) rendered after `body`. */
-  lists?: { intro?: string; items: string[] }[];
+  lists?: { intro?: string; items: string[]; inline?: boolean }[];
   bodyAfter?: string[];
   /** Optional single image rendered at the very bottom, after `bodyAfter`. */
   bottomImage?: InlineImage;
@@ -254,8 +258,7 @@ export const projects: Project[] = [
       lead: "Defining what a useful AI experience should achieve",
       body: [
         "Together with PM, we ran a design sprint to align the team around the purpose of the new feature, the major risks, and the questions we needed to answer.",
-        "Our primary goal was straightforward:",
-        "**“Enable customers to generate useful insights from their collected feedback with as little effort as possible.”**",
+        "Our primary goal was **“Enable customers to generate useful insights from their collected feedback with as little effort as possible.”**",
       ],
       bodyImage: {
         src: "/images/project_ai_insights/project_01_design_sprint.png",
@@ -400,7 +403,7 @@ export const projects: Project[] = [
         },
       ],
       bodyAfter: [
-        "Each side combines an AI-generated summary with ranked topics, mention counts, and visual bars. This gives users both a high-level interpretation and enough structured data to understand the relative importance of each topic.",
+        "Each side combines an AI-generated summary with ranked topics, mention counts, and visual bars, giving users both a high-level interpretation and enough structured data to understand the relative importance of each topic. Instead of requiring users to assemble a story from a table, the interface presents the story first and lets them explore the details when necessary, and the design was also adapted for mobile so managers could check the latest insights when they were away from a desktop or moving around the property.",
       ],
       imageRow: [
         {
@@ -411,9 +414,6 @@ export const projects: Project[] = [
           src: "/images/project_ai_insights/project_01_ai_insights_drawer.png",
           alt: "The AI Insights detail drawer, expanding a topic into supporting mentions and evidence.",
         },
-      ],
-      closing: [
-        "Instead of requiring users to assemble a story from a table, the interface presents the story first and lets them explore the details when necessary. The design was also adapted for mobile, allowing managers to check the latest insights when they were away from a desktop or moving around the property.",
       ],
     },
     outcomes: [
@@ -518,7 +518,7 @@ export const projects: Project[] = [
       lead: "Making AI review replies worth sending",
       body: [
         "Nearly 70% of AI-generated replies were edited before publication, so improving the model alone was not going to be enough.",
-        "Hotel teams use AIRA to respond to guest reviews without having to write every reply from scratch. It should help them communicate efficiently while maintaining the professionalism guests expect from their brand.",
+        "Hotel teams use the AI reply assistant to respond to guest reviews without having to write every reply from scratch. It should help them communicate efficiently while maintaining the professionalism guests expect from their brand.",
         "In practice, the generated replies often created more work than anticipated. They could be overly formal, repetitive, generic, or unnecessarily long. Quality varied between languages, and some responses used culturally inappropriate forms of address or introduced details that were not present in the review.",
         "With a new generation of language models becoming available, we had an opportunity to improve the feature. But our investigation showed that simply replacing the existing model would not fix the underlying experience. The interface, configuration options, prompt architecture, and rollout strategy all needed to evolve together.",
       ],
@@ -572,9 +572,8 @@ export const projects: Project[] = [
           "Personalization and professional quality mattered more than speed.",
         ],
       },
-      bodyAfter: [
-        "The product did not need to generate faster. It needed to earn trust.",
-      ],
+      question: "The product did not need to generate faster. It needed to earn trust.",
+      questionQuoted: true,
     },
     insights: [
       {
@@ -750,7 +749,7 @@ export const projects: Project[] = [
           body: [
             "The resulting concept combined a reliable default configuration with optional brand customization and centralized safeguards.",
             "Customers could begin with a professional setup that already accounted for reply length, signatures, tone, cultural formality, and factual grounding. Hotels that needed a more distinctive voice could describe it without changing the rules that protected reply quality.",
-            "Behind the interface, the structured prompt architecture created a clearer relationship between each setting and the generated response. Together, these changes moved AIRA away from being a generic text generator and toward becoming a controlled communication system.",
+            "Behind the interface, the structured prompt architecture created a clearer relationship between each setting and the generated response. Together, these changes moved the AI reply assistant away from being a generic text generator and toward becoming a controlled communication system.",
           ],
         },
       },
@@ -860,9 +859,7 @@ export const projects: Project[] = [
         ],
       },
       bodyAfter: [
-        "The global token described the value, while the semantic token explained how it should be used.",
-        "This meant designers no longer needed to remember which shade of blue belonged in a particular context. They could choose a token based on its purpose, while the underlying value could be updated centrally in the future.",
-        "The same logic was applied to typography, spacing, border radius, shadows, and motion, creating a consistent foundation for every component that followed.",
+        "The global token described the value, while the semantic token explained how it should be used. This meant designers no longer needed to remember which shade of blue belonged in a particular context. They could choose a token based on its purpose, while the underlying value could be updated centrally in the future. The same logic was applied to typography, spacing, border radius, shadows, and motion, creating a consistent foundation for every component that followed.",
       ],
     },
     insights: [
@@ -914,9 +911,16 @@ export const projects: Project[] = [
     developmentNarrative: {
       lead: "Designing for the people building the product",
       body: [
-        "A design system has two groups of users: the customers interacting with the final interface and the teams responsible for creating it.",
-        "For designers, the system needed to make components easy to find, understand, and adapt without detaching them from the shared foundations. For developers, it needed to clearly communicate component structure, properties, states, and expected behavior.",
-        "I therefore aligned the component organization and naming as closely as possible with the way the product would be implemented. This gave design and development a more consistent vocabulary and reduced the number of decisions that needed to be reinterpreted during handoff.",
+        "A design system has two groups of users:",
+      ],
+      lists: [
+        {
+          inline: true,
+          items: [
+            "**For designers,** the system needed to make components easy to find, understand, and adapt without detaching them from the shared foundations.",
+            "**For developers,** it needed to clearly communicate component structure, properties, states, and expected behavior.",
+          ],
+        },
       ],
     },
     solution:
@@ -973,7 +977,7 @@ export const projects: Project[] = [
       body: [
         "This project taught me that the most important part of a design system is not the number of components it contains. Its value comes from the decisions it removes, the conversations it simplifies, and the alignment it creates between teams.",
         "It also reinforced the importance of solving foundational questions early. A clear token structure or naming convention may appear small in isolation, but it influences every component and product experience built on top of it.",
-        "Most importantly, I learned that a design system should never be considered finished. It is a product that needs to evolve alongside the people, technology, and customer needs it supports.",
+        "Most importantly, I learned that **a design system should never be considered finished. It is a product that needs to evolve alongside the people, technology, and customer needs it supports.**",
       ],
     },
   },

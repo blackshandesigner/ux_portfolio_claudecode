@@ -331,7 +331,7 @@ type AnyNarrative = {
   quoteGroup?: { intro?: string; quotes: string[] };
   listIntro?: string;
   list?: string[];
-  lists?: { intro?: string; items: string[] }[];
+  lists?: { intro?: string; items: string[]; inline?: boolean }[];
   bodyImage?: { src: string; alt: string; width: number; height: number; maxHeight?: number };
   bodyImageAfter?: number;
   cards?: { title: string; detail: string }[];
@@ -340,6 +340,7 @@ type AnyNarrative = {
   bottomImage?: { src: string; alt: string; width: number; height: number; maxHeight?: number };
   closing?: string[];
   question?: string;
+  questionQuoted?: boolean;
 };
 
 /** A single image rendered at its natural aspect ratio (full-width unless `maxHeight` caps it). */
@@ -615,7 +616,7 @@ function NarrativePart({
       ) : null}
       {narrative.lists?.flatMap((group, gi) => [
         group.intro ? <p key={`li-${gi}`}>{group.intro}</p> : null,
-        <ul className="case-bullet-list" key={`ul-${gi}`}>
+        <ul className={`case-bullet-list${group.inline ? " case-bullet-inline" : ""}`} key={`ul-${gi}`}>
           {group.items.map((item) => (
             <li key={item}>{renderInline(item)}</li>
           ))}
@@ -625,7 +626,17 @@ function NarrativePart({
       {narrative.imageRow ? <ImageRow items={narrative.imageRow} /> : null}
       {narrative.bottomImage ? <InlineImage image={narrative.bottomImage} /> : null}
       <Paragraphs items={narrative.closing} />
-      {narrative.question ? <blockquote>{narrative.question}</blockquote> : null}
+      {narrative.question ? (
+        narrative.questionQuoted ? (
+          <blockquote className="case-quote-callout">
+            <span className="case-quote-mark">“</span>
+            {narrative.question}
+            <span className="case-quote-mark">”</span>
+          </blockquote>
+        ) : (
+          <blockquote>{narrative.question}</blockquote>
+        )
+      ) : null}
     </>
   );
 }
@@ -649,6 +660,14 @@ function ProseBlock({
         <CodeExample example={narrative.codeExample} />
       ) : null}
       {narrative.pyramid ? <TokenPyramid pyramid={narrative.pyramid} /> : null}
+      {narrative.lists?.flatMap((group, gi) => [
+        group.intro ? <p key={`li-${gi}`}>{group.intro}</p> : null,
+        <ul className={`case-bullet-list${group.inline ? " case-bullet-inline" : ""}`} key={`ul-${gi}`}>
+          {group.items.map((item) => (
+            <li key={item}>{renderInline(item)}</li>
+          ))}
+        </ul>,
+      ])}
       <Paragraphs items={narrative.bodyAfter} />
       {narrative.imageRow ? <ImageRow items={narrative.imageRow} /> : null}
       {narrative.bottomImage ? <InlineImage image={narrative.bottomImage} /> : null}

@@ -371,6 +371,7 @@ section { scroll-margin-top: 86px; }
 .case-bullet-list li { position: relative; margin: 0 0 12px; padding-left: 24px; color: var(--text-secondary); font-size: 16px; font-weight: 400; line-height: 1.75; }
 .case-bullet-list li::before { content: ""; position: absolute; left: 4px; top: 11px; width: 6px; height: 6px; background: var(--sage); border-radius: 50%; }
 .case-bullet-list li strong { display: block; margin-bottom: 4px; font-weight: 600; color: var(--text); }
+.case-bullet-inline li strong { display: inline; margin-bottom: 0; }
 .case-bullet-list li:last-child { margin-bottom: 0; }
 .case-section-body > .case-bullet-list:last-child { margin-bottom: 0; }
 /* Token / code example */
@@ -400,6 +401,8 @@ section { scroll-margin-top: 86px; }
 /* Secondary heading for a merged sub-section */
 .case-section-body > .case-subhead { max-width: none; margin: clamp(48px, 5vw, 72px) 0 20px; color: var(--text); font-size: 20px; font-weight: 600; letter-spacing: -.01em; line-height: 1.35; }
 .case-section-body blockquote { margin: 48px 0 0; padding: 0 0 0 34px; border-left: 5px solid var(--sage); font-size: 24px; font-weight: 600; letter-spacing: -.035em; line-height: 1.4; }
+.case-quote-mark { color: var(--sage); }
+.case-section-body blockquote.case-quote-callout { padding-left: 0; border-left: 0; }
 /* Emphasised quote group (e.g. questions a manager might ask) */
 .case-quote-group { margin: 48px 0 0; }
 .case-quote-intro { margin: 0 0 24px; color: var(--text-secondary); font-size: clamp(1rem, 1.05vw, 1.15rem); font-weight: 600; }
