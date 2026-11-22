@@ -12,3 +12,5 @@ out/
 npm-debug.log*
 .claude/
 
+.vercel
+.env*

@@ -14,12 +14,12 @@ export default function Home() {
       <main id="main-content">
         <section id="home" className="hero page-container" aria-labelledby="hero-title">
           <div className="hero-intro">
-            <p>Turn research, data, and complex workflows into accessible, user-friendly B2B SaaS and AI experiences, from early discovery through launch.</p>
+            <p>Turn user research, behavioral insights, and complex workflows into intuitive B2B SaaS and AI-powered products which is combining product design, AI-assisted development, and data-driven iteration from discovery to launch.</p>
           </div>
           <h1 id="hero-title" className="hero-title">
             <span className="mask"><span>Product</span></span>
             <span className="mask"><span>Designer</span></span>
-            <span className="mask hero-title-accent"><span><em>B2B SaaS & AI Experience.</em></span></span>
+            <span className="mask hero-title-accent"><span><em>B2B SaaS & AI-Assisted Builder.</em></span></span>
           </h1>
           <div className="hero-meta">
             <span>Portfolio 2026</span>
@@ -37,20 +37,17 @@ export default function Home() {
           <div className="page-container">
             <Reveal><SectionHeader title="About" compact /></Reveal>
             <Reveal className="about-grid">
-              <div>
-                <h2>Product Designer<br /><em>& System Thinker</em></h2>
-              </div>
               <div className="about-copy">
                 <div className="about-columns">
                   <div>
-                    <p>I’m a Product Designer with experience across B2B SaaS, AI-powered products, and complex digital services. I combine user research, product strategy, interaction design, analytics, and rapid prototyping to move ideas from discovery through launch and continuous improvement.</p>
-                    <p>My work includes designing AI-driven features, accessible design systems, design tokens, and operational workflows for international users. I care about making products easier to understand, easier to maintain, and more consistent across design and engineering.</p>
+                    <p>I’m a Product Designer with 5+ years of experience in B2B SaaS, AI-powered products, and complex digital experiences. I combine user research, behavioral analytics, and product strategy with hands-on AI-assisted development to turn user problems into functional solutions, from discovery and prototyping to implementation, testing, and launch.</p>
+                    <p>I design AI-powered features, analyze user behavior with Mixpanel, and build accessible, scalable design systems. I also use Claude Code to implement features and validate them through automated testing, bridging design and engineering to deliver products that are intuitive, maintainable, and continuously improving.</p>
                   </div>
                   <ul>
-                    <li>AI-powered B2B products</li>
-                    <li>Research-led product decisions</li>
-                    <li>Accessible design systems</li>
-                    <li>Cross-functional product delivery</li>
+                    <li>AI-Powered B2B SaaS Products</li>
+                    <li>AI-Assisted Development &amp; Testing</li>
+                    <li>User Behavior Analytics &amp; Research</li>
+                    <li>Accessible Design Systems</li>
                   </ul>
                 </div>
               </div>

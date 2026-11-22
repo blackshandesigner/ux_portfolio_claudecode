@@ -187,9 +187,7 @@ section { scroll-margin-top: 86px; }
 
 /* About */
 .about-section { padding-block: 32px; background: var(--bg-tint); }
-.about-grid { display: grid; grid-template-columns: 1fr; gap: 32px; }
-.about-grid h2 { margin: 28px 0 0; font-size: var(--heading-xl); font-weight: 800; letter-spacing: -0.06em; line-height: .92; }
-.about-grid h2 em { color: var(--sage-dark); font-style: normal; }
+.about-grid { display: grid; grid-template-columns: 1fr; gap: 32px; margin-top: 40px; }
 .about-copy { max-width: 760px; }
 .about-columns { display: grid; grid-template-columns: 1fr; gap: 32px; }
 .about-columns p { margin: 0 0 18px; color: var(--text-secondary); font-size: .94rem; }
@@ -454,7 +452,6 @@ section { scroll-margin-top: 86px; }
   .hero-title { font-size: clamp(4rem, 12vw, 7rem); line-height: 1.08; }
   .project-card-link { grid-template-columns: 56px minmax(0, 1fr); }
   .project-image-placeholder, .project-image { grid-column: 2; height: auto; min-height: 0; aspect-ratio: 16 / 9; }
-  .about-grid h2 { max-width: 10ch; }
   .education-row .experience-role h3 { white-space: normal; }
   .experience-row { grid-template-columns: .8fr 1.3fr 1.6fr; }
   .timeline-marker { display: none; }
