@@ -19,7 +19,7 @@ export default function Home() {
           <h1 id="hero-title" className="hero-title">
             <span className="mask"><span>Product</span></span>
             <span className="mask"><span>Designer</span></span>
-            <span className="mask hero-title-accent"><span><em>B2B SaaS & AI-Assisted Builder.</em></span></span>
+            <span className="mask hero-title-accent"><span><em>B2B SaaS & AI Experience.</em></span></span>
           </h1>
           <div className="hero-meta">
             <span>Portfolio 2026</span>
